@@ -1,0 +1,29 @@
+<app-ajout-tache (tacheToAdd)="addTache($event)"></app-ajout-tache>
+
+<div class="card shadow-md ml-5 mr-5 ml-5 mt-5">
+   <div class="carh-header text-center">
+      <h2 class="pt-2 text-center text-decoration-underline" > Liste des taches </h2>
+   </div>
+
+<div *ngIf="taches.length else loading">
+   <app-liste-tache 
+      *ngFor="let tache of taches" (tacheToDelete)="deleteTache(tache)" (tacheToEdit)="modifyTache(tache)" 
+      [tache]="tache" (tacheToEdit2)="addTache(tache)" >
+</app-liste-tache>  
+</div>
+<ng-template #loading >
+   Loading. . .
+</ng-template>
+
+
+
+<div class="card shadow-md ml-5 mr-5 ml-5 mt-5">
+   <div class="carh-header text-center">
+      <h2 class="pt-3 pb-2 text-center text-decoration-underline">Liste des taches Executées</h2>
+   </div>
+<div *ngIf="taches.length else loading">
+   <app-tache-executer (tacheToEdit2)="addTache(tache)" (tacheToDelete)="deleteTache(tache)" *ngFor="let tache of taches" [tache]="tache"></app-tache-executer>  
+</div>
+<ng-template #loading >
+   Aucune tache execute
+</ng-template>

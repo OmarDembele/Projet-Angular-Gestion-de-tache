@@ -1,0 +1,27 @@
+<div class="card-body pt-4">
+<form  (ngSubmit)="handleAdd(myForm)" #myForm="ngForm">
+    <div class="form-group input-group">
+        <label for="text" class="pt-4 pr-2 mr-2 pl-2 text-bg-primary">Ajouter une tache : </label>
+        <input class="form-control" id="text" name="libelle" ngModel required minlength="5" #libelle="ngModel" placeholder="Ajouter une libelle :">
+        <span style="color: red;" *ngIf="libelle.invalid && (libelle.dirty || libelle.touched)">
+            <span *ngIf = "libelle.errors?.['required']" >Le libelle est obligatoire</span>
+            <span *ngIf = "libelle.errors?.['minLength']" >Le libelle doit avoir au moins 5 lettres</span>
+          </span>
+        <select class="form-select" aria-label="Default select example" required ngModel name="etat" #etat="ngModel">
+            <span style="color: red;" *ngIf="etat.invalid && (etat.dirty || etat.touched)">
+                <span *ngIf = "etat.errors?.['required']" >L'etat est obligatoire</span>
+              </span>
+            <option selected>Selectionnez un etat</option>
+            <option value="En attente">En attente</option>
+            <option value="En cours">En cours</option>
+        </select>
+        <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary btn-lg m-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+          </svg>
+        </button>
+    </div>
+</form>
+</div>
+    
